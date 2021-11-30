@@ -9,3 +9,9 @@ else
     echo "Symlink for qmk_firmware/keyboards/lets_split/keymaps/pcheng already exists"
 fi
 
+if ! [ -e "${BASEDIR}"/qmk_firmware/keyboards/planck/keymaps/pcheng ]; then
+    echo "Creating symlink for qmk_firmware/keyboards/planck/keymaps/pcheng"
+    ln -s "${BASEDIR}"/keyboards/planck/keymaps/pcheng "${BASEDIR}"/qmk_firmware/keyboards/planck/keymaps
+else
+    echo "Symlink for qmk_firmware/keyboards/planck/keymaps/pcheng already exists"
+fi
