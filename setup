@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+BASEDIR="$PWD"
+
+if ! [ -e "${BASEDIR}"/qmk_firmware/keyboards/lets_split/keymaps/pcheng ]; then
+    echo "Creating symlink for qmk_firmware/keyboards/lets_split/keymaps/pcheng"
+    ln -s "${BASEDIR}"/keyboards/lets_split/keymaps/pcheng "${BASEDIR}"/qmk_firmware/keyboards/lets_split/keymaps
+else
+    echo "Symlink for qmk_firmware/keyboards/lets_split/keymaps/pcheng already exists"
+fi
+

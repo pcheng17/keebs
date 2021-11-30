@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+source venv/bin/activate
+cd qmk_firmware
+qmk compile -kb lets_split -km pcheng
+deactivate
