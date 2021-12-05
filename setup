@@ -15,3 +15,10 @@ if ! [ -e "${BASEDIR}"/qmk_firmware/keyboards/planck/keymaps/pcheng ]; then
 else
     echo "Symlink for qmk_firmware/keyboards/planck/keymaps/pcheng already exists"
 fi
+
+if ! [ -e "${BASEDIR}"/qmk_firmware/keyboards/keebio/levinson/keymaps/pcheng ]; then
+    echo "Creating symlink for qmk_firmware/keyboards/keebio/levinson/keymaps/pcheng"
+    ln -s "${BASEDIR}"/keyboards/keebio/levinson/keymaps/pcheng "${BASEDIR}"/qmk_firmware/keyboards/keebio/levinson/keymaps
+else
+    echo "Symlink for qmk_firmware/keyboards/keebio/levinson/keymaps/pcheng already exists"
+fi
