@@ -16,7 +16,8 @@ enum custom_keycodes
 {
     QWERTY = SAFE_RANGE,
     COLEMAK,
-    DVORAK
+    DVORAK,
+    DUBCOL,
 };
 
 #define LOWER   MO(_LOWER)
@@ -40,17 +41,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
     * | Shift|   Z  |   X  |   C  |   V  |   B  |      |   N  |   M  |   ,  |   .  |   /  |Enter |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
-    * |      | Ctrl | GUI  | Alt  |Lower*|Space |      |Space |Raise | Left | Down |  Up  |Right |
+    * |      | Ctrl | GUI  | Alt  |Lower*|Space |      |Enter |Raise*| Left | Down |  Up  |Right |
     * '-----------------------------------------'      '-----------------------------------------'
     *
     * - Ctrl acts as Esc when tapped
     * - Lower acts as Del when tapped
+    * - Raise acts as Backspace when tapped
     */
     [_QWERTY] = LAYOUT_ortho_4x12(
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
-        CTLESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-        XXXXXXX, KC_LCTL, KC_LGUI, KC_LALT, LOWDEL,  KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT  \
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,               KC_I,    KC_O,    KC_P,    KC_BSPC, \
+        CTLESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,               KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,               KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
+        XXXXXXX, KC_LCTL, KC_LGUI, KC_LALT, LOWDEL,  KC_SPC,  KC_ENT,  MT(RAISE, KC_BSPC), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT  \
     ),
 
     /* Lower
@@ -85,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     [_RAISE] = LAYOUT_ortho_4x12( \
         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, _______, _______, _______, \
         _______, KC_UNDS, KC_MINS, KC_PLUS, KC_EQL,  _______, _______, KC_LPRN, KC_RPRN, KC_LBRC, KC_RBRC, KC_GRV,  \
-        _______, _______, _______, KC_LT,   KC_GT,   _______, _______, KC_LCBR, KC_RCBR, KC_SLSH, KC_QUES, _______, \
+        _______, DUBCOL, _______, KC_LT,   KC_GT,   _______, _______, KC_LCBR, KC_RCBR, KC_SLSH, KC_QUES, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
     ),
 
@@ -171,6 +173,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case DVORAK:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_DVORAK);
+            }
+            return false;
+        case DUBCOL:
+            if (record->event.pressed) {
+                SEND_STRING("::");
             }
             return false;
     }
