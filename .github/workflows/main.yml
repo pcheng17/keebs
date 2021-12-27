@@ -1,4 +1,4 @@
-name: Makefile CI
+name: Build keebio/levinson/rev3
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
     container: qmkfm/qmk_cli
     steps:
@@ -18,3 +18,8 @@ jobs:
       run: python ./setup.py
     - name: Build firmware
       run: make -C qmk_firmware keebio/levinson/rev3:pcheng
+    - name: Archive artifact
+      users: actions/upload-artifact@v2
+      with:
+        name: keebio_levinson_rev3_pcheng
+        path: ./qmk_firmware/keebio_levinson_rev3_pcheng.hex
