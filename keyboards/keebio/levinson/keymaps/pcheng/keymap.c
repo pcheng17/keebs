@@ -31,6 +31,9 @@ enum custom_keycodes
 #define WSRIGHT C(G(KC_RIGHT))
 #define CTLALTD C(A(KC_DEL))
 
+/* TODO: Add in a macro for comments because I doin't like reaching for the slash key */
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
     /* Qwerty
@@ -182,13 +185,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             return false;
     }
     return true;
-}
-
-bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case CTLESC:
-            return true;
-        default:
-            return false;
-    }
 }

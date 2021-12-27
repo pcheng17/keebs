@@ -30,4 +30,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define TAPPING_TERM 130
 #define PERMISSIVE_HOLD
-#define RETRO_TAPPING_PER_KEY

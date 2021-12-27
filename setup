@@ -2,23 +2,16 @@
 
 BASEDIR="$PWD"
 
-if ! [ -e "${BASEDIR}"/qmk_firmware/keyboards/lets_split/keymaps/pcheng ]; then
-    echo "Creating symlink for qmk_firmware/keyboards/lets_split/keymaps/pcheng"
-    ln -s "${BASEDIR}"/keyboards/lets_split/keymaps/pcheng "${BASEDIR}"/qmk_firmware/keyboards/lets_split/keymaps
-else
-    echo "Symlink for qmk_firmware/keyboards/lets_split/keymaps/pcheng already exists"
-fi
-
 if ! [ -e "${BASEDIR}"/qmk_firmware/keyboards/planck/keymaps/pcheng ]; then
     echo "Creating symlink for qmk_firmware/keyboards/planck/keymaps/pcheng"
-    ln -s "${BASEDIR}"/keyboards/planck/keymaps/pcheng "${BASEDIR}"/qmk_firmware/keyboards/planck/keymaps
+    ln -s "${BASEDIR}"/keyboards/planck/keymaps/pcheng "${BASEDIR}"/qmk_firmware/keyboards/planck/keymaps/pcheng
 else
     echo "Symlink for qmk_firmware/keyboards/planck/keymaps/pcheng already exists"
 fi
 
 if ! [ -e "${BASEDIR}"/qmk_firmware/keyboards/keebio/levinson/keymaps/pcheng ]; then
     echo "Creating symlink for qmk_firmware/keyboards/keebio/levinson/keymaps/pcheng"
-    ln -s "${BASEDIR}"/keyboards/keebio/levinson/keymaps/pcheng "${BASEDIR}"/qmk_firmware/keyboards/keebio/levinson/keymaps
+    ln -s "${BASEDIR}"/keyboards/keebio/levinson/keymaps/pcheng "${BASEDIR}"/qmk_firmware/keyboards/keebio/levinson/keymaps/pcheng
 else
     echo "Symlink for qmk_firmware/keyboards/keebio/levinson/keymaps/pcheng already exists"
 fi

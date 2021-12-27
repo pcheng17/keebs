@@ -2,5 +2,5 @@
 
 source venv/bin/activate
 cd qmk_firmware
-qmk compile -kb keebio/levinson -km pcheng
+make keebio/levinson/rev3:pcheng
 deactivate
