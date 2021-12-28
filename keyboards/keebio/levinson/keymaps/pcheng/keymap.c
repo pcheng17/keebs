@@ -24,7 +24,6 @@ enum custom_keycodes
 #define RAISE   MO(_RAISE)
 #define ADJUST  MO(_ADJUST)
 
-#define LOWDEL  MT(LOWER, KC_DEL)
 #define CTLESC  LCTL_T(KC_ESC)
 #define WINSNIP S(G(KC_S))
 #define WSLEFT  C(G(KC_LEFT))
@@ -52,10 +51,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * - Raise acts as Backspace when tapped
     */
     [_QWERTY] = LAYOUT_ortho_4x12(
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,               KC_I,    KC_O,    KC_P,    KC_BSPC, \
-        CTLESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,               KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,               KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-        XXXXXXX, KC_LCTL, KC_LGUI, KC_LALT, LOWDEL,  KC_SPC,  KC_ENT,  MT(RAISE, KC_BSPC), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT  \
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,               KC_T,    KC_Y,    KC_U,               KC_I,    KC_O,    KC_P,    KC_BSPC, \
+        CTLESC,  KC_A,    KC_S,    KC_D,    KC_F,               KC_G,    KC_H,    KC_J,               KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,               KC_B,    KC_N,    KC_M,               KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
+        XXXXXXX, KC_LCTL, KC_LGUI, KC_LALT, LT(LOWER, KC_DEL),  KC_SPC,  KC_ENT,  LT(RAISE, KC_BSPC), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT  \
     ),
 
     /* Lower
