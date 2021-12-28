@@ -26,7 +26,7 @@ enum custom_keycodes
     GEQ,
 };
 
-#define BASE    MO(_QWERTY)
+#define BASE    TO(_QWERTY)
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
 #define ADJUST  MO(_ADJUST)
