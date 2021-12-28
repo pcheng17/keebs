@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-source venv/bin/activate
-make -C qmk_firmware keebio/levinson/rev3:pcheng
-deactivate
