@@ -8,8 +8,11 @@
 #define _QWERTY     0
 #define _LOWER      1
 #define _RAISE      2
-#define _COLEMAK_DH 3
-#define _DVORAK     4
+#define _NAVI       3
+#define _NUMPAD     4
+#define _FNC        5
+#define _COLEMAK_DH 6
+#define _DVORAK     7
 #define _ADJUST     16
 
 enum custom_keycodes
@@ -18,11 +21,16 @@ enum custom_keycodes
     COLEMAK,
     DVORAK,
     DUBCOL,
+    ARROW,
+    LEQ,
+    GEQ,
 };
 
+#define BASE    MO(_QWERTY)
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
 #define ADJUST  MO(_ADJUST)
+#define NUMPAD  TG(_NUMPAD)
 
 #define CTLESC  LCTL_T(KC_ESC)
 #define WINSNIP S(G(KC_S))
@@ -43,18 +51,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
     * | Shift|   Z  |   X  |   C  |   V  |   B  |      |   N  |   M  |   ,  |   .  |   /  |Enter |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
-    * |      | Ctrl | GUI  | Alt  |Lower*|Space |      |Enter |Raise*| Left | Down |  Up  |Right |
+    * |      | Ctrl | GUI  | Alt  |Lower*|Space*|      |Enter |Raise*|Left* | Down |  Up  |Right |
     * '-----------------------------------------'      '-----------------------------------------'
     *
     * - Ctrl acts as Esc when tapped
     * - Lower acts as Del when tapped
     * - Raise acts as Backspace when tapped
+    * - Left space moves to navigation layer when held
+    * - Left moves to function layer when held
     */
     [_QWERTY] = LAYOUT_ortho_4x12(
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,               KC_T,    KC_Y,    KC_U,               KC_I,    KC_O,    KC_P,    KC_BSPC, \
-        CTLESC,  KC_A,    KC_S,    KC_D,    KC_F,               KC_G,    KC_H,    KC_J,               KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,               KC_B,    KC_N,    KC_M,               KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-        XXXXXXX, KC_LCTL, KC_LGUI, KC_LALT, LT(LOWER, KC_DEL),  KC_SPC,  KC_ENT,  LT(RAISE, KC_BSPC), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT  \
+        KC_TAB,         KC_Q,    KC_W,    KC_E,    KC_R,               KC_T,    KC_Y,    KC_U,               KC_I,              KC_O,    KC_P,    KC_BSPC, \
+        LCTL_T(KC_ESC), KC_A,    KC_S,    KC_D,    KC_F,               KC_G,    KC_H,    KC_J,               KC_K,              KC_L,    KC_SCLN, KC_QUOT, \
+        KC_LSFT,        KC_Z,    KC_X,    KC_C,    KC_V,               KC_B,    KC_N,    KC_M,               KC_COMM,           KC_DOT,  KC_SLSH, KC_ENT , \
+        XXXXXXX,        KC_LCTL, KC_LGUI, KC_LALT, LT(LOWER, KC_DEL),  KC_SPC,  KC_ENT,  LT(RAISE, KC_BSPC), LT(_FNC, KC_LEFT), KC_DOWN, KC_UP,   KC_RGHT  \
     ),
 
     /* Lower
@@ -87,9 +97,63 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * '-----------------------------------------'      '-----------------------------------------'
     */
     [_RAISE] = LAYOUT_ortho_4x12( \
-        KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, _______, _______, _______, \
-        _______, KC_UNDS, KC_MINS, KC_PLUS, KC_EQL,  _______, _______, KC_LPRN, KC_RPRN, KC_LBRC, KC_RBRC, KC_GRV,  \
-        _______, DUBCOL, _______, KC_LT,   KC_GT,   _______, _______, KC_LCBR, KC_RCBR, KC_SLSH, KC_QUES, _______, \
+        KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_BSLASH, _______, \
+        _______, KC_UNDS, KC_MINS, KC_PLUS, KC_EQL,  _______, _______, KC_LPRN, KC_RPRN, KC_LBRC, KC_RBRC,   KC_GRV,  \
+        _______, DUBCOL,  ARROW,   KC_LT,   KC_GT,   _______, _______, KC_LCBR, KC_RCBR, KC_SLSH, KC_QUES, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
+    ),
+
+    /* Navigation
+    * .-----------------------------------------.      .-----------------------------------------.
+    * |      |      |      |      |      |      |      |      |      |  Up  |      |      |      |
+    * |------+------+------+------+------+------|      |------+------+------+------+------+------|
+    * |      |      | Snip | WS<- | WS-> |      |      |      | Left | Down |Right |      |      |
+    * |------+------+------+------+------+------|      |------+------+------+------+------+------|
+    * |      |      |      |      |      |      |      |      |      |      |      |      |      |
+    * |------+------+------+------+------+------|      |------+------+------+------+------+------|
+    * |      |      |      |      |      |      |      |      |      |      |      |      |      |
+    * '-----------------------------------------'      '-----------------------------------------'
+    */
+    [_NAVI] = LAYOUT_ortho_4x12( \
+        _______, _______, _______, _______, _______, _______, _______, _______, KC_UP,   _______, _______, _______, \
+        _______, _______, WINSNIP, WSLEFT,  WSRIGHT, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
+    ),
+
+    /* Numpad
+    * .-----------------------------------------.      .-----------------------------------------.
+    * |      |      |      |      |      |      |      |      |   7  |   8  |   9  |   =  |      |
+    * |------+------+------+------+------+------|      |------+------+------+------+------+------|
+    * | BASE |      |      |      |      |      |      |   /  |   4  |   5  |   6  |   -  |      |
+    * |------+------+------+------+------+------|      |------+------+------+------+------+------|
+    * |      |      |      |      |      |      |      |   *  |   1  |   2  |   3  |   +  |Enter |
+    * |------+------+------+------+------+------|      |------+------+------+------+------+------|
+    * |      |      |      |      |      |      |      |      |   0  |   ,  |   .  |      |      |
+    * '-----------------------------------------'      '-----------------------------------------'
+    */
+    [_NUMPAD] = LAYOUT_ortho_4x12( \
+        _______, _______, _______, _______, _______, _______, _______,   KC_7, KC_8,    KC_9,   KC_EQL,  _______, \
+        BASE,    _______, _______, _______, _______, _______, KC_BSLASH, KC_4, KC_5,    KC_6,   KC_MINS, _______, \
+        _______, _______, _______, _______, _______, _______, KC_ASTR,   KC_1, KC_2,    KC_3,   KC_PLUS, _______, \
+        _______, _______, _______, _______, _______, _______, _______,   KC_0, KC_COMM, KC_DOT, _______, _______  \
+    ),
+
+    /* Function layer
+    * .-----------------------------------------.      .-----------------------------------------.
+    * |      |  F1  |  F2  |  F3  |  F4  |      |      |      |      |      |      |      |      |
+    * |------+------+------+------+------+------|      |------+------+------+------+------+------|
+    * |      |  F5  |  F6  |  F7  |  F8  |      |      |      |      |      |      |      |      |
+    * |------+------+------+------+------+------|      |------+------+------+------+------+------|
+    * |      |  F9  | F10  | F11  | F12  |      |      |      |      |      |      |      |      |
+    * |------+------+------+------+------+------|      |------+------+------+------+------+------|
+    * |      |      |      |      |      |      |      |      |      |      |      |      |      |
+    * '-----------------------------------------'      '-----------------------------------------'
+    */
+    [_FNC] = LAYOUT_ortho_4x12( \
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______, _______, _______, _______, _______, _______, _______, \
+        _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______, _______, _______, _______, _______, _______, \
+        _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, _______, _______, _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
     ),
 
@@ -137,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * .-----------------------------------------.      .-----------------------------------------.
     * |      |      |      |      |      |      |      |      |      |      |      |      |Reset |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
-    * | CAD  |      |      |      |      |      |      |      |Qwerty|Colemk|Dvorak|      |
+    * | CAD  |      |      |      |Numpad|      |      |      |Qwerty|Colemk|      |      |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
     * |      |      |      |      |      |      |      |      |      |      |      |      |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
@@ -148,7 +212,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     */
     [_ADJUST] =  LAYOUT_ortho_4x12( \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET,   \
-      CTLALTD, _______, _______, _______, _______, _______, _______, QWERTY,  COLEMAK, DVORAK,  _______, _______, \
+      CTLALTD, _______, _______, _______, NUMPAD,  _______, _______, QWERTY,  COLEMAK, _______,  _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
     )
@@ -180,6 +244,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case DUBCOL:
             if (record->event.pressed) {
                 SEND_STRING("::");
+            }
+            return false;
+        case ARROW:
+            if (record->event.pressed) {
+                SEND_STRING("->");
+            }
+            return false;
+        case LEQ:
+            if (record->event.pressed) {
+                SEND_STRING("<=");
+            }
+            return false;
+        case GEQ:
+            if (record->event.pressed) {
+                SEND_STRING(">=");
             }
             return false;
     }
