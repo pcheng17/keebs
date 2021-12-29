@@ -19,6 +19,7 @@ enum custom_keycodes
     QWERTY = SAFE_RANGE,
     COLEMAK,
     DVORAK,
+    CPPCOMMENT,
     DUBCOL,
     ARROW,
     LEQ,
@@ -73,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * .-----------------------------------------.      .-----------------------------------------.
     * |      |   1  |   2  |   3  |   4  |   5  |      |   6  |   7  |   8  |   9  |   0  |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
-    * |      |Hangul|      |      |      |      |      |      |   4  |   5  |   6  |      |      |
+    * |      |Hangul|      |      |      |      |      |      |   4  |   5  |   6  |  //  |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
     * | Caps |      |      |      |      |      |      |   0  |   1  |   2  |   3  |      |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
@@ -81,10 +82,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * '-----------------------------------------'      '-----------------------------------------'
     */
     [_LOWER] = LAYOUT_ortho_4x12( \
-        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, \
-        _______, KC_HAEN, _______, _______, _______, _______, _______, KC_4,    KC_5,    KC_6,    _______, _______, \
-        KC_CAPS, _______, _______, _______, _______, _______, KC_0,    KC_1,    KC_2,    KC_3,    _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
+        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,       _______, \
+        _______, KC_HAEN, _______, _______, _______, _______, _______, KC_4,    KC_5,    KC_6,    CPPCOMMENT, _______, \
+        KC_CAPS, _______, _______, _______, _______, _______, KC_0,    KC_1,    KC_2,    KC_3,    _______,    _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    _______  \
     ),
 
     /* Raise
@@ -218,6 +219,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 set_single_persistent_default_layer(_COLEMAK_DH);
             }
             return false;
+        case CPPCOMMENT:
+            if (record->event.pressed) {
+                SEND_STRING("//");
+            }
+            return false;
         case DUBCOL:
             if (record->event.pressed) {
                 SEND_STRING("::");
@@ -240,4 +246,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             return false;
     }
     return true;
+}
+
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record)
+{
+    /* Return true if the key should immediately select the hold action when another
+     * key is pressed.
+     */
+    switch (keycode) {
+        case LT(_RAISE, KC_ENT):
+            /* Since my raise key is currently used to access symbols, and it also acts
+             * as "Enter" when tapped, I need it prefer the hold action if another
+             * key is pressed.
+             */
+            return true;
+        default:
+            return false;
+    }
 }
