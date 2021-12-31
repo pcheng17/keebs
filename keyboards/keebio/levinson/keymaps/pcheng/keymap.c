@@ -269,10 +269,18 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record)
 // the dual-role key, all within the tapping term, the dual-role key will perform its
 // tap action by default. If the `PERMISSIVE_HOLD` option is enabled, the dual-role
 // key will perform its hold action instead.
-// bool get_permissive_hold(uint16_t keycode, keyrecord_t *record)
-// {
-//     switch (keycode) {
-//         default:
-//             return false;
-//     }
-// }
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record)
+{
+    switch (keycode) {
+        case LT(_NAVI, KC_SPC):
+            // Since my left space is used to access my navigation keys when held,
+            // I tend to accidentally trigger some of the navigation keys when I'm
+            // typing quickly because I'll be a little sloppy with the space key.
+            // So, I'm going to experiment with turning permissive hold off for just
+            // this key, assuming that I won't be trying to use my navigation keys
+            // super quickly.
+            return false;
+        default:
+            return true;
+    }
+}
