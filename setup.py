@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import os
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
@@ -12,4 +10,4 @@ for dirpath, dirnames, filenames in subdirs:
         src = os.path.join(BASEDIR, dirpath)
         dst = os.path.join(QMKDIR, dirpath)
         if not os.path.islink(dst):
-            os.symlink(os.path.join(BASEDIR, dirpath), os.path.join(QMKDIR, dirpath))
+            os.symlink(src, dst)
