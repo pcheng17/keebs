@@ -37,8 +37,7 @@ enum custom_keycodes
 #define WSRIGHT C(G(KC_RIGHT))
 #define CTLALTD C(A(KC_DEL))
 
-/* TODO: Add in a macro for comments because I don't like reaching for the slash key
- * TODO: Add home row mods to the function layer
+/* TODO: Add home row mods to the function layer
  * TODO: Move some macros onto the lower layer
  * TODO: Add shift word using tap dance on the shift key
  * TODO: Add tap dance on the bottom left key (maybe Ctrl + Alt + Del?)
@@ -248,19 +247,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     return true;
 }
 
+// If you press a dual-role key, press another key, and then release the dual-role key,
+// all within the tapping term, the dual-role key will perform its tap action. If the
+// `HOLD_ON_OTHER_KEY_PRESS` option is enabled, the dual-role key will also perform its
+// hold action instead.
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record)
 {
-    /* Return true if the key should immediately select the hold action when another
-     * key is pressed.
-     */
     switch (keycode) {
         case LT(_RAISE, KC_ENT):
-            /* Since my raise key is currently used to access symbols, and it also acts
-             * as "Enter" when tapped, I need it prefer the hold action if another
-             * key is pressed.
-             */
+            // Since my raise key is currently used to access symbols and it also acts
+            // as "Enter" when tapped, I need it prefer the hold action if another
+            // key is pressed because chances are, I'm not trying to press "Enter"
+            // in the middle of a bunch of keystrokes.
             return true;
         default:
             return false;
     }
 }
+
+// If you press a dual-role key, tap another key (press and release) and then release
+// the dual-role key, all within the tapping term, the dual-role key will perform its
+// tap action by default. If the `PERMISSIVE_HOLD` option is enabled, the dual-role
+// key will perform its hold action instead.
+// bool get_permissive_hold(uint16_t keycode, keyrecord_t *record)
+// {
+//     switch (keycode) {
+//         default:
+//             return false;
+//     }
+// }
