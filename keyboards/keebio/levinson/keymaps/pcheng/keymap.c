@@ -168,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * '-----------------------------------------'      '-----------------------------------------'
     */
     /*
-    [_COLEMAK_DH] = LAYOUT_ortho_4x12( \
+    [_COLEMAK] = LAYOUT_ortho_4x12( \
         KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC, \
         CLTESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
@@ -212,7 +212,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             return false;
         case COLEMAK:
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_COLEMAK_DH);
+                set_single_persistent_default_layer(_COLEMAK);
             }
             return false;
         case CPPCOMMENT:
