@@ -34,10 +34,10 @@ enum keycodes
 #define WSRIGHT  C(G(KC_RIGHT))
 #define CTLALTD  C(A(KC_DEL))
 
-#define LCHRM    LCTL_T(KC_J)
-#define LSHRM    LSFT_T(KC_K)
-#define LAHRM    LALT_T(KC_L)
-#define LGHRM    LGUI_T(KC_SCLN)
+#define LCHRM    LCTL_T(KC_F)
+#define LSHRM    LSFT_T(KC_D)
+#define LAHRM    LALT_T(KC_S)
+#define LGHRM    LGUI_T(KC_A)
 
 #define RCHRM    LCTL_T(KC_J)    // For some reason, right control doesn't work...
 #define RSHRM    RSFT_T(KC_K)
