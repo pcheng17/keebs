@@ -3,6 +3,8 @@ name: Build keebio/levinson/rev3
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   main:
