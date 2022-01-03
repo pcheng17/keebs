@@ -49,6 +49,24 @@ enum keycodes
  * TODO: Add tap dance on the bottom left key (maybe Ctrl + Alt + Del?)
  */
 
+enum tapdance
+{
+    SAFE_RESET
+};
+
+void safe_reset(qk_tap_dance_state_t *state, void *user_data)
+{
+    if (state->count >= 3) {
+        reset_keyboard();
+        reset_tap_dance(state);
+    }
+}
+
+qk_tap_dance_action_t tap_dance_actions[] =
+{
+    [TD_RESET] = ACTION_TAP_DANCE_FN(safe_reset)
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
     /* Qwerty
@@ -173,36 +191,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
     * | Shift|   Z  |   X  |   C  |   D  |   V  |      |   K  |   H  |   ,  |   .  |   /  |Enter |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
-    * |Adjust| Ctrl | GUI  | Alt  |Lower |Space |      |Space |Raise | Left | Down |  Up  |Right |
+    * |      | Ctrl | GUI  | Alt  |Lower |Space |      |Space |Raise | Left | Down |  Up  |Right |
     * '-----------------------------------------'      '-----------------------------------------'
     */
-    /*
     [_COLEMAK] = LAYOUT_ortho_4x12( \
         KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC, \
         CLTESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-        ADJUST,  KC_LCTL, KC_LGUI, KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
-    )
-    */
+        _______, KC_LCTL, KC_LGUI, KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+    ),
 
     /* Adjust (Lower + Raise)
     * .-----------------------------------------.      .-----------------------------------------.
     * |      |      |      |      |      |      |      |      |      |      |      |      |Reset |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
-    * | CAD  |      |      |      |      |      |      |      |Qwerty|Colemk|      |      |      |
+    * | CAD  |      |      |      |      |      |      |      |Qwerty|Colemk|Macro1|Macro2|      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
-    * |      |      |      |      |      |      |      |      |Numpad|      |      |      |      |
+    * |      |      |      |      |      |      |      |      |Numpad| Stop | Rec1 | Rec2 |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
     * |      |      |      |      |      |      |      |      |      |      |      |      |      |
     * '-----------------------------------------'      '-----------------------------------------'
     *
     * - CAD = Ctrl + Alt + Del
     */
-    [_ADJUST] =  LAYOUT_ortho_4x12( \
-      _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, RESET,   \
-      CTLALTD, _______, _______, _______, _______, _______, _______, QWERTY,      COLEMAK, _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, TG(_NUMPAD), _______, _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______  \
+    [_ADJUST] = LAYOUT_ortho_4x12( \
+      _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, TD(SAFE_RESET), \
+      CTLALTD, _______, _______, _______, _______, _______, _______, QWERTY,      COLEMAK, DM_PLY1, DM_PLY2, _______,        \
+      _______, _______, _______, _______, _______, _______, _______, TG(_NUMPAD), DM_RSTP, DM_REC1, DM_REC2, _______,        \
+      _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______         \
     )
 };
 
