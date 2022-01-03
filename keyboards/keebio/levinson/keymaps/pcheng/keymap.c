@@ -48,24 +48,6 @@ enum keycodes
  * TODO: Add tap dance on the bottom left key (maybe Ctrl + Alt + Del?)
  */
 
-enum tapdance
-{
-    SAFE_RESET
-};
-
-void safe_reset(qk_tap_dance_state_t *state, void *user_data)
-{
-    if (state->count >= 3) {
-        reset_keyboard();
-        reset_tap_dance(state);
-    }
-}
-
-qk_tap_dance_action_t tap_dance_actions[] =
-{
-    [SAFE_RESET] = ACTION_TAP_DANCE_FN(safe_reset)
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
     /* Qwerty
@@ -202,7 +184,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
     /* Adjust (Lower + Raise)
     * .-----------------------------------------.      .-----------------------------------------.
-    * |      |      |      |      |      |      |      |      |      |      |      |      |Reset |
+    * |      |      |      |      |      |      |      |      |      |      |      |      |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
     * | CAD  |      |      |      |      |      |      |      | Rec1 |Macro1|      | Stop |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
@@ -214,10 +196,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * - CAD = Ctrl + Alt + Del
     */
     [_ADJUST] = LAYOUT_ortho_4x12( \
-      _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, TD(SAFE_RESET), \
-      CTLALTD, _______, _______, _______, _______, _______, DM_REC1, DM_PLY1,     _______, _______, DM_RSTP, _______,        \
-      _______, _______, _______, _______, _______, _______, _______, TG(_NUMPAD), _______, _______, _______, _______,        \
-      _______, _______, _______, _______, _______, _______, _______, _______,     QWERTY,  COLEMAK, _______, _______         \
+      _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, \
+      CTLALTD, _______, _______, _______, _______, _______, DM_REC1, DM_PLY1,     _______, _______, DM_RSTP, _______, \
+      _______, _______, _______, _______, _______, _______, _______, TG(_NUMPAD), _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______,     QWERTY,  COLEMAK, _______, _______  \
     )
 };
 
