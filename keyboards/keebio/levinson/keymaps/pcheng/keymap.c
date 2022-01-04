@@ -265,7 +265,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record)
 {
     switch (keycode) {
         case LGUI_T(KC_A):
-        case LALT_T(KC_S);
+        case LALT_T(KC_S):
         case LSFT_T(KC_D):
         case LCLT_T(KC_F):
         case LCLT_T(KC_J):
