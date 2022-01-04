@@ -264,6 +264,14 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record)
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record)
 {
     switch (keycode) {
+        case LGUI_T(KC_A):
+        case LALT_T(KC_S);
+        case LSFT_T(KC_D):
+        case LCLT_T(KC_F):
+        case LCLT_T(KC_J):
+        case RSFT_T(KC_K):
+        case LALT_T(KC_L):
+        case RGUI_T(KC_SCLN):
         case LT(_NAVI, KC_SPC):
             // Since my left space is used to access my navigation keys when held,
             // I tend to accidentally trigger some of the navigation keys when I'm
