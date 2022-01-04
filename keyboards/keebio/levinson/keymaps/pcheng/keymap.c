@@ -267,8 +267,8 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record)
         case LGUI_T(KC_A):
         case LALT_T(KC_S):
         case LSFT_T(KC_D):
-        case LCLT_T(KC_F):
-        case LCLT_T(KC_J):
+        case LCTL_T(KC_F):
+        case LCTL_T(KC_J):
         case RSFT_T(KC_K):
         case LALT_T(KC_L):
         case RGUI_T(KC_SCLN):
