@@ -52,9 +52,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     *
     * - Ctrl acts as Esc when tapped
     * - Lower acts as Del when tapped
-    * - Raise acts as Backspace when tapped
-    * - Left space moves to navigation layer when held
-    * - Left moves to function layer when held
+    * - Raise acts as Enter when tapped
+    * - Left space enables navigation layer when held
+    * - Left arrow enables function layer when held
     */
     [_QWERTY] = LAYOUT_ortho_4x12(
         KC_TAB,         KC_Q,         KC_W,         KC_E,         KC_R,                KC_T,               KC_Y,    KC_U,               KC_I,              KC_O,            KC_P,            KC_BSPC, \
