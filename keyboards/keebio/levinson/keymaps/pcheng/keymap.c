@@ -15,7 +15,6 @@ enum keycodes
 {
     QWERTY = SAFE_RANGE,
     COLEMAK,
-    DVORAK,
     CPPCOMMENT,
     COLCOL,
     ARROW,
@@ -32,16 +31,6 @@ enum keycodes
 #define WSLEFT   C(G(KC_LEFT))
 #define WSRIGHT  C(G(KC_RIGHT))
 #define CTLALTD  C(A(KC_DEL))
-
-#define LCHRM    LCTL_T(KC_F)
-#define LSHRM    LSFT_T(KC_D)
-#define LAHRM    LALT_T(KC_S)
-#define LGHRM    LGUI_T(KC_A)
-
-#define RCHRM    LCTL_T(KC_J)    // For some reason, right control doesn't work...
-#define RSHRM    RSFT_T(KC_K)
-#define RAHRM    LALT_T(KC_L)
-#define RGHRM    RGUI_T(KC_SCLN)
 
 /* TODO: Move some macros onto the lower layer
  * TODO: Add shift word using tap dance on the shift key
@@ -63,9 +52,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     *
     * - Ctrl acts as Esc when tapped
     * - Lower acts as Del when tapped
-    * - Raise acts as Backspace when tapped
-    * - Left space moves to navigation layer when held
-    * - Left moves to function layer when held
+    * - Raise acts as Enter when tapped
+    * - Left space enables navigation layer when held
+    * - Left arrow enables function layer when held
     */
     [_QWERTY] = LAYOUT_ortho_4x12(
         KC_TAB,         KC_Q,    KC_W,    KC_E,    KC_R,                KC_T,               KC_Y,    KC_U,               KC_I,              KC_O,    KC_P,    KC_BSPC, \
@@ -159,7 +148,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     */
     [_FNC] = LAYOUT_ortho_4x12( \
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______, _______, _______, _______, _______, _______, _______, \
-        _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______, RCHRM,   RSHRM,   RAHRM,   RGHRM,   _______, \
+        _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______, KC_LCTL, KC_RSFT, KC_LALT, KC_RGUI, _______, \
         _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, _______, _______, _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
     ),
