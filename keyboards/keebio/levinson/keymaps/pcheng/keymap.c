@@ -15,7 +15,7 @@ enum keycodes
 {
     QWERTY = SAFE_RANGE,
     COLEMAK,
-    CPPCOMMENT,
+    CPPCOMM,
     COLCOL,
     ARROW,
     LEQ,
@@ -75,10 +75,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * '-----------------------------------------'      '-----------------------------------------'
     */
     [_LOWER] = LAYOUT_ortho_4x12( \
-        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,       KC_9,    KC_0,    _______, \
-        _______, KC_HAEN, _______, _______, _______, _______, _______, ARROW,   CPPCOMMENT, _______, _______, _______, \
-        KC_CAPS, _______, _______, _______, _______, _______, _______, COLCOL,  _______,    _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______  \
+        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, \
+        _______, KC_HAEN, _______, _______, _______, _______, _______, ARROW,   CPPCOMM, _______, _______, _______, \
+        KC_CAPS, _______, _______, _______, _______, _______, _______, COLCOL,  _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
     ),
 
     /* Raise
@@ -210,9 +210,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 set_single_persistent_default_layer(_COLEMAK);
             }
             return false;
-        case CPPCOMMENT:
+        case CPPCOMM:
             if (record->event.pressed) {
-                SEND_STRING("// ");
+                SEND_STRING("//");
             }
             return false;
         case COLCOL:
