@@ -15,7 +15,7 @@ enum keycodes
 {
     QWERTY = SAFE_RANGE,
     COLEMAK,
-    CPPCOMMENT,
+    CPPCOMM,
     COLCOL,
     ARROW,
     LEQ,
@@ -75,10 +75,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * '-----------------------------------------'      '-----------------------------------------'
     */
     [_LOWER] = LAYOUT_ortho_4x12( \
-        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,       KC_9,    KC_0,    _______, \
-        _______, KC_HAEN, _______, _______, _______, _______, _______, ARROW,   CPPCOMMENT, _______, _______, _______, \
-        KC_CAPS, _______, _______, _______, _______, _______, _______, COLCOL,  _______,    _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______  \
+        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, \
+        _______, KC_HAEN, _______, _______, _______, _______, _______, ARROW,   CPPCOMM, _______, _______, _______, \
+        KC_CAPS, _______, _______, _______, _______, _______, _______, COLCOL,  _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
     ),
 
     /* Raise
@@ -137,19 +137,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
     /* Function layer
     * .-----------------------------------------.      .-----------------------------------------.
-    * |      |  F1  |  F2  |  F3  |  F4  |      |      |      |      |      |      |      |      |
+    * |      | F12  |  F7  |  F8  |  F9  |      |      |      |      |      |      |      |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
-    * |      |  F5  |  F6  |  F7  |  F8  |      |      |      | Ctrl |Shift | Alt  | Gui  |      |
+    * |      | F11  |  F4  |  F5  |  F6  |      |      |      | Ctrl |Shift | Alt  | Gui  |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
-    * |      |  F9  | F10  | F11  | F12  |      |      |      |      |      |      |      |      |
+    * |      | F10  |  F1  |  F2  |  F3  |      |      |      |      |      |      |      |      |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
     * |      |      |      |      |      |      |      |      |      |      |      |      |      |
     * '-----------------------------------------'      '-----------------------------------------'
     */
     [_FNC] = LAYOUT_ortho_4x12( \
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______, _______, _______, _______, _______, _______, _______, \
-        _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______, KC_LCTL, KC_RSFT, KC_LALT, KC_RGUI, _______, \
-        _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, _______, _______, _______, _______, _______, \
+        _______, KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, _______, _______, _______, _______, _______, _______, \
+        _______, KC_F11,  KC_F4,   KC_F5,   KC_F6,   _______, _______, KC_LCTL, KC_RSFT, KC_LALT, KC_RGUI, _______, \
+        _______, KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, _______, _______, _______, _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
     ),
 
@@ -210,9 +210,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 set_single_persistent_default_layer(_COLEMAK);
             }
             return false;
-        case CPPCOMMENT:
+        case CPPCOMM:
             if (record->event.pressed) {
-                SEND_STRING("// ");
+                SEND_STRING("//");
             }
             return false;
         case COLCOL:
@@ -246,9 +246,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record)
 {
     switch (keycode) {
+        case LT(_LOWER, KC_DEL):
+            // Since my lower key is used to access characters, and it also acts as
+            // "Delete" when tapped, I need it to prefer the hold action if another
+            // key is pressed because chances are, I'm not trying to press "Delete"
+            // in the middle of a bunch of keystrokes.
         case LT(_RAISE, KC_ENT):
-            // Since my raise key is currently used to access symbols and it also acts
-            // as "Enter" when tapped, I need it prefer the hold action if another
+            // Since my raise key is used to access characters, and it also acts as
+            // "Enter" when tapped, I need it to prefer the hold action if another
             // key is pressed because chances are, I'm not trying to press "Enter"
             // in the middle of a bunch of keystrokes.
             return true;
