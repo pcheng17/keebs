@@ -1,4 +1,4 @@
-name: Build crkbd
+name: Build crkbd/rev1
 
 on:
   push:
