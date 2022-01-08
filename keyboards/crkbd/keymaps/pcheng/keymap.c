@@ -40,14 +40,18 @@ enum keycodes {
     GEQ,
 };
 
-#define BASE    TO(_QWERTY)
-#define LOWER   LT(_LOWER, KC_DEL)
-#define RAISE   MO(_RAISE)
-#define LSPACE  LT(_NAVI, KC_SPC)
-#define FNC     MO(_FNC)
-#define ADJUST  MO(_ADJUST)
+#define BASE     TO(_QWERTY)
+#define LOWER    LT(_LOWER, KC_DEL)
+#define RAISE    MO(_RAISE)
+#define LSPACE   LT(_NAVI, KC_SPC)
+#define FNC      MO(_FNC)
+#define ADJUST   MO(_ADJUST)
 
-#define CTLESC  LCTL_T(KC_ESC)
+#define CTLESC   LCTL_T(KC_ESC)
+#define WINSNIP  S(G(KC_S))
+#define WSLEFT   C(G(KC_LEFT))
+#define WSRIGHT  C(G(KC_RIGHT))
+#define CTLALTD  C(A(KC_DEL))
 
 #define MOD_A   LGUI_T(KC_A)
 #define MOD_S   LALT_T(KC_S)
