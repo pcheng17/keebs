@@ -1,0 +1,25 @@
+name: Build crkbd
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    container: qmkfm/qmk_cli
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Create symlinks
+      run: python ./setup.py
+    - name: Build firmware
+      run: make -C qmk_firmware crkbd:pcheng
+    - name: Archive artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: crkbd
+        path: ./qmk_firmware/crkbd_pcheng.hex
