@@ -47,12 +47,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
     * | Shift|   Z  |   X  |   C  |   V  |   B  |      |   N  |   M  |   ,  |   .  |   /  |Enter |
     * |------+------+------+------+------+------|      |------+------+------+------+------+------|
-    * |      | Ctrl | GUI  | Alt  |Lower*|Space*|      |Space |Raise*|Left* | Down |  Up  |Right |
+    * |      | Ctrl | GUI  | Alt  |Lower*|Space*|      |Space |Raise |Left* | Down |  Up  |Right |
     * '-----------------------------------------'      '-----------------------------------------'
     *
     * - Ctrl acts as Esc when tapped
     * - Lower acts as Del when tapped
-    * - Raise acts as Enter when tapped
     * - Left space enables navigation layer when held
     * - Left arrow enables function layer when held
     */
@@ -246,13 +245,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record)
 {
     switch (keycode) {
+        case LCTL_T(KC_ESC):
+            // I need this key to prefer the hold action when I roll, which I often
+            // do with "Ctrl + *" shortcuts.
         case LT(_LOWER, KC_DEL):
-            // Since my lower key is used to access characters, and it also acts as
+            // Since my lower key is used to access characters and also acts as
             // "Delete" when tapped, I need it to prefer the hold action if another
             // key is pressed because chances are, I'm not trying to press "Delete"
             // in the middle of a bunch of keystrokes.
         case LT(_RAISE, KC_ENT):
-            // Since my raise key is used to access characters, and it also acts as
+            // Since my raise key is used to access characters, and also acts as
             // "Enter" when tapped, I need it to prefer the hold action if another
             // key is pressed because chances are, I'm not trying to press "Enter"
             // in the middle of a bunch of keystrokes.
@@ -268,6 +270,9 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record)
 // key will perform its hold action instead.
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record)
 {
+    // TODO Flip the logic here. Keys that need permissive hold are the ones that
+    // I will combo quickly: `LOWER`, `RAISE`, `CTLESC`.
+    // Seems like it's the same as the above!
     switch (keycode) {
         case LGUI_T(KC_A):
         case LALT_T(KC_S):
