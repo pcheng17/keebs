@@ -27,8 +27,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
-
-#define TAPPING_TERM 200
-#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
-#define IGNORE_MOD_TAP_INTERRUPT
-#define PERMISSIVE_HOLD_PER_KEY

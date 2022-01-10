@@ -11,3 +11,8 @@ for dirpath, dirnames, filenames in subdirs:
         dst = os.path.join(QMKDIR, dirpath)
         if not os.path.islink(dst):
             os.symlink(src, dst)
+
+src = os.path.join(BASEDIR, 'common')
+dst = os.path.join(QMKDIR, 'users/pcheng')
+if not os.path.islink(dst):
+    os.symlink(src, dst)
