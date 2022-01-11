@@ -11,6 +11,7 @@ enum common_layers {
     _NAVI,
     _NUMPAD,
     _FUNC,
+    _GAME,
     _ADJUST
 };
 
@@ -25,6 +26,7 @@ enum common_custom_keycodes {
 };
 
 #define BASE     TO(_QWERTY)
+#define GAME     TO(_GAME)
 #define LOWER    MO(_LOWER)
 #define RAISE    MO(_RAISE)
 #define ADJUST   MO(_ADJUST)
