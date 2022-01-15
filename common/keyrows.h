@@ -34,12 +34,12 @@
 #define _________________LOWER_L3__________________      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
 #define _________________LOWER_R1__________________      KC_6,    KC_7,    KC_8,    KC_9,    KC_0
-#define _________________LOWER_R2__________________      XXXXXXX, KC_ARRW, KC_SLSL, XXXXXXX, XXXXXXX
-#define _________________LOWER_R3__________________      XXXXXXX, KC_CLCL, XXXXXXX, XXXXXXX, XXXXXXX
+#define _________________LOWER_R2__________________      XXXXXXX, KC_CLCL, KC_SLSL, XXXXXXX, XXXXXXX
+#define _________________LOWER_R3__________________      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
 #define _________________RAISE_L1__________________      KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
 #define _________________RAISE_L2__________________      KC_UNDS, KC_MINS, KC_PLUS, KC_EQL,  KC_LEQ
-#define _________________RAISE_L3__________________      XXXXXXX, XXXXXXX, KC_LT,   KC_GT,   KC_GEQ
+#define _________________RAISE_L3__________________      XXXXXXX, KC_ARRW, KC_LT,   KC_GT,   KC_GEQ
 
 #define _________________RAISE_R1__________________      KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_BSLS
 #define _________________RAISE_R2__________________      XXXXXXX, KC_LPRN, KC_RPRN, KC_LBRC, KC_RBRC

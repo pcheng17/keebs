@@ -16,103 +16,77 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include QMK_KEYBOARD_H
+#include "pcheng.h"
 #include <stdio.h>
 
-enum layers {
-    _QWERTY,
-    _LOWER,
-    _RAISE,
-    _NAVI,
-    _NUMPAD,
-    _FNC,
-    _COLEMAK,
-    _ADJUST
-};
 
-enum keycodes {
-    QWERTY = SAFE_RANGE,
-    COLEMAK,
-    CPPCOMM,
-    COLCOL,
-    ARROW,
-    LEQ,
-    GEQ,
-};
-
-#define BASE     TO(_QWERTY)
-#define LOWER    LT(_LOWER, KC_DEL)
-#define RAISE    MO(_RAISE)
-#define LSPACE   LT(_NAVI, KC_SPC)
-#define FNC      MO(_FNC)
-#define ADJUST   MO(_ADJUST)
-
-#define CTLESC   LCTL_T(KC_ESC)
-#define WINSNIP  S(G(KC_S))
-#define WSLEFT   C(G(KC_LEFT))
-#define WSRIGHT  C(G(KC_RIGHT))
-#define CTLALTD  C(A(KC_DEL))
-
-#define MOD_A   LGUI_T(KC_A)
-#define MOD_S   LALT_T(KC_S)
-#define MOD_D   LSFT_T(KC_D)
-#define MOD_F   LCTL_T(KC_F)
-
-#define MOD_J   LCTL_T(KC_J)
-#define MOD_K   RSFT_T(KC_K)
-#define MOD_L   LALT_T(KC_L)
-#define MOD_SC  RGUI_T(KC_SCLN)
+#define LAYOUT_wrapper(...)    LAYOUT_split_3x6_3(__VA_ARGS__)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
-    [_QWERTY] = LAYOUT_split_3x6_3(
+    [_QWERTY] = LAYOUT_wrapper(
     //.-----------------------------------------------------.                    .-----------------------------------------------------.
-         KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+         KC_TAB, _________________QWERTY_L1_________________,                      _________________QWERTY_R1_________________, KC_BSPC,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-         CTLESC,    KC_A,   MOD_S,   MOD_D,   MOD_F,    KC_G,                         KC_H,   MOD_J,   MOD_K,   MOD_L,  MOD_SC, KC_QUOT,
+         CTLESC,   MOD_A,   MOD_S,   MOD_D,   MOD_F,    KC_G,                         KC_H,   MOD_J,   MOD_K,   MOD_L,  MOD_SC, KC_QUOT,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
+        KC_LSFT, _________________QWERTY_L3_________________,                      _________________QWERTY_R3_________________,  KC_ENT,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             KC_LGUI,   LOWER,  LSPACE,     KC_SPC,   RAISE,     FNC
                                         //'--------------------------'  '--------------------------'
 
     ),
 
-    [_LOWER] = LAYOUT_split_3x6_3(
+    [_LOWER] = LAYOUT_wrapper(
     //.-----------------------------------------------------.                    .-----------------------------------------------------.
-        _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
+        _______, _________________LOWER_L1__________________,                      _________________LOWER_R1__________________, _______,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        _______, KC_HAEN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,   ARROW, CPPCOMM, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, _________________LOWER_L2__________________,                      _________________LOWER_R2__________________, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,  COLCOL, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+        _______, _________________LOWER_L3__________________,                      _________________LOWER_R3__________________, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             _______, _______, _______,    _______, _______, _______
                                         //'--------------------------'  '--------------------------'
     ),
 
-    [_RAISE] = LAYOUT_split_3x6_3(
+    [_RAISE] = LAYOUT_wrapper(
     //.-----------------------------------------------------.                    .-----------------------------------------------------.
-        KC_TILD, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_BSLS, _______,
+        KC_TILD, _________________RAISE_L1__________________,                      _________________RAISE_R1__________________, _______,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        _______, KC_UNDS, KC_MINS, KC_PLUS,  KC_EQL,     LEQ,                      XXXXXXX, KC_LPRN, KC_RPRN, KC_LBRC, KC_RBRC,  KC_GRV,
+        _______, _________________RAISE_L2__________________,                      _________________RAISE_R2__________________,  KC_GRV,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        _______, XXXXXXX, XXXXXXX,   KC_LT,   KC_GT,     GEQ,                      XXXXXXX, KC_LCBR, KC_RCBR, KC_SLSH, KC_QUES, _______,
+        _______, _________________RAISE_L3__________________,                      _________________RAISE_R3__________________, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             _______, _______, _______,    _______, _______, _______
                                         //'--------------------------'  '--------------------------'
     ),
 
-    [_NAVI] = LAYOUT_split_3x6_3(
+    [_NAVI] = LAYOUT_wrapper(
     //.-----------------------------------------------------.                    .-----------------------------------------------------.
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, _______,
+        XXXXXXX, __________________NO_OP____________________,                      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         XXXXXXX, XXXXXXX, WINSNIP, WSLEFT,  WSRIGHT, XXXXXXX,                      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+        XXXXXXX, __________________NO_OP____________________,                      __________________NO_OP____________________, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             _______, _______, _______,    _______, _______, _______
                                         //'--------------------------'  '--------------------------'
     ),
+
+    [_NUMPAD] = LAYOUT_wrapper(
+    //.-----------------------------------------------------.                    .-----------------------------------------------------.
+        XXXXXXX, __________________NO_OP____________________,                      ________________NUMPAD_R1__________________, _______,
+    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+           BASE, __________________NO_OP____________________,                      ________________NUMPAD_R2__________________, XXXXXXX,
+    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+        XXXXXXX, __________________NO_OP____________________,                      ________________NUMPAD_R3__________________, _______,
+    //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                            _______, _______, _______,    _______, _______, _______
+                                        //'--------------------------'  '--------------------------'
+    ),
+
+    // _FUNC
+    // _GAME
 
     [_ADJUST] = LAYOUT_split_3x6_3(
     //.-----------------------------------------------------.                    .-----------------------------------------------------.
@@ -127,106 +101,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     )
 };
 
-layer_state_t layer_state_set_user(layer_state_t state)
-{
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record)
-{
-    switch (keycode) {
-        case QWERTY:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_QWERTY);
-            }
-            return false;
-        case COLEMAK:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_COLEMAK);
-            }
-            return false;
-        case CPPCOMM:
-            if (record->event.pressed) {
-                SEND_STRING("//");
-            }
-            return false;
-        case COLCOL:
-            if (record->event.pressed) {
-                SEND_STRING("::");
-            }
-            return false;
-        case ARROW:
-            if (record->event.pressed) {
-                SEND_STRING("->");
-            }
-            return false;
-        case LEQ:
-            if (record->event.pressed) {
-                SEND_STRING("<=");
-            }
-            return false;
-        case GEQ:
-            if (record->event.pressed) {
-                SEND_STRING(">=");
-            }
-            return false;
-    }
-    return true;
-}
-
-// If you press a dual-role key, press another key, and then release the dual-role key,
-// all within the tapping term, the dual-role key will perform its tap action. If the
-// `HOLD_ON_OTHER_KEY_PRESS` option is enabled, the dual-role key will also perform its
-// hold action instead.
-bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record)
-{
-    switch (keycode) {
-        case LT(_LOWER, KC_DEL):
-            // Since my lower key is used to access characters, and it also acts as
-            // "Delete" when tapped, I need it to prefer the hold action if another
-            // key is pressed because chances are, I'm not trying to press "Delete"
-            // in the middle of a bunch of keystrokes.
-        case LT(_RAISE, KC_ENT):
-            // Since my raise key is used to access characters, and it also acts as
-            // "Enter" when tapped, I need it to prefer the hold action if another
-            // key is pressed because chances are, I'm not trying to press "Enter"
-            // in the middle of a bunch of keystrokes.
-            return true;
-        default:
-            return false;
-    }
-}
-
-// If you press a dual-role key, tap another key (press and release) and then release
-// the dual-role key, all within the tapping term, the dual-role key will perform its
-// tap action by default. If the `PERMISSIVE_HOLD` option is enabled, the dual-role
-// key will perform its hold action instead.
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record)
-{
-    // I'm using macros for the home-row modifiers because permissive hold should
-    // always be off for them, regardless of what they are. However, for the other
-    // keys, I'm specifying the exact keys that should be effected.
-    switch (keycode) {
-        case MOD_A:
-        case MOD_S:
-        case MOD_D:
-        case MOD_F:
-        case MOD_J:
-        case MOD_K:
-        case MOD_L:
-        case MOD_SC:
-        case LT(_NAVI, KC_SPC):
-            // Since my left space is used to access my navigation keys when held,
-            // I tend to accidentally trigger some of the navigation keys when I'm
-            // typing quickly because I'll be a little sloppy with the space key.
-            // So, I'm going to experiment with turning permissive hold off for just
-            // this key, assuming that I won't be trying to use my navigation keys
-            // super quickly.
-            return false;
-        default:
-            return true;
-    }
-}
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation)
