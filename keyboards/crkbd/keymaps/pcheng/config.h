@@ -22,18 +22,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //#define USE_MATRIX_I2C
 
-/* Select hand configuration */
 
+// Select hand configuration
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
 #define USE_SERIAL_PD2
-
-// #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 160
-#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
-#define PERMISSIVE_HOLD_PER_KEY
 
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM
