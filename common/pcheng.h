@@ -94,7 +94,7 @@ enum common_custom_keycodes {
 #define _________________LOWER_R3__________________      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
 #define _________________RAISE_L1__________________      KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
-#define _________________RAISE_L2__________________      KC_UNDS, KC_MINS, KC_PLUS, KC_EQL,  KC_LEQ
+#define _________________RAISE_L2__________________      XXXXXXX, KC_MINS, KC_PLUS, KC_EQL,  KC_LEQ
 #define _________________RAISE_L3__________________      XXXXXXX, KC_ARRW, KC_LT,   KC_GT,   KC_GEQ
 
 #define _________________RAISE_R1__________________      KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_BSLS
