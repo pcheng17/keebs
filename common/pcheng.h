@@ -62,7 +62,7 @@ enum common_custom_keycodes {
 #define _________________QWERTY_R2_________________      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT
 #define _________________QWERTY_R3_________________      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
 
-#define _______________QWERTY_MOD_L2_______________      MOD_A,   MOD_S,   MOD_D,   MOD_F,   KC_G
+#define _______________QWERTY_MOD_L2_______________      KC_A,    MOD_S,   MOD_D,   MOD_F,   KC_G
 #define _______________QWERTY_MOD_R2_______________      KC_H,    MOD_J,   MOD_K,   MOD_L,   MOD_SC
 
 #define ______________COLEMAK_MOD_DH_L1____________      KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
