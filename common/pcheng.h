@@ -43,15 +43,25 @@ enum common_custom_keycodes {
 #define CTLALTD  C(A(KC_DEL))
 #define CTLESC   LCTL_T(KC_ESC)
 
-#define MOD_A    LGUI_T(KC_A)
-#define MOD_S    LALT_T(KC_S)
-#define MOD_D    LSFT_T(KC_D)
-#define MOD_F    LCTL_T(KC_F)
+#define W_HM_A   LGUI_T(KC_A)
+#define W_HM_S   LALT_T(KC_S)
+#define W_HM_D   LSFT_T(KC_D)
+#define W_HM_F   LCTL_T(KC_F)
 
-#define MOD_J    LCTL_T(KC_J)
-#define MOD_K    RSFT_T(KC_K)
-#define MOD_L    LALT_T(KC_L)
-#define MOD_SC   RGUI_T(KC_SCLN)
+#define W_HM_J   LCTL_T(KC_J)
+#define W_HM_K   RSFT_T(KC_K)
+#define W_HM_L   LALT_T(KC_L)
+#define W_HM_SC  RGUI_T(KC_SCLN)
+
+#define M_HM_A   LCTL_T(KC_A)
+#define M_HM_S   LALT_T(KC_S)
+#define M_HM_D   LCMD_T(KC_D)
+#define M_HM_F   LSFT_T(KC_F)
+
+#define M_HM_J   LSFT_T(KC_J)
+#define M_HM_K   LCMD_T(KC_K)
+#define M_HM_L   LALT_T(KC_L)
+#define M_HM_SC  LCTL_T(KC_SCLN)
 
 // clang-format off
 #define _________________QWERTY_L1_________________      KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
@@ -62,16 +72,19 @@ enum common_custom_keycodes {
 #define _________________QWERTY_R2_________________      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT
 #define _________________QWERTY_R3_________________      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
 
-#define _______________QWERTY_MOD_L2_______________      KC_A,    MOD_S,   MOD_D,   MOD_F,   KC_G
-#define _______________QWERTY_MOD_R2_______________      KC_H,    MOD_J,   MOD_K,   MOD_L,   MOD_SC
+#define _____________QWERTY_WIN_MOD_L2_____________      KC_A,    W_HM_S,  W_HM_D,  W_HM_F,  KC_G
+#define _____________QWERTY_WIN_MOD_R2_____________      KC_H,    W_HM_J,  W_HM_K,  W_HM_L,  W_HM_SC
 
-#define ______________COLEMAK_MOD_DH_L1____________      KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
-#define ______________COLEMAK_MOD_DH_L2____________      KC_A,    KC_R,    KC_S,    KC_T,    KC_G
-#define ______________COLEMAK_MOD_DH_L3____________      KC_Z,    KC_X,    KC_C,    KC_D,    KC_V
+#define _____________QWERTY_MAC_MOD_L2_____________      M_HM_A,  M_HM_S,  M_HM_D,  M_HM_F,  KC_G
+#define _____________QWERTY_MAC_MOD_R2_____________      KC_H,    M_HM_J,  M_HM_K,  M_HM_L,  M_HM_SC
 
-#define ______________COLEMAK_MOD_DH_R1____________      KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
-#define ______________COLEMAK_MOD_DH_R2____________      KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT
-#define ______________COLEMAK_MOD_DH_R3____________      KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
+#define _____________COLEMAK_MOD_DH_L1_____________      KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
+#define _____________COLEMAK_MOD_DH_L2_____________      KC_A,    KC_R,    KC_S,    KC_T,    KC_G
+#define _____________COLEMAK_MOD_DH_L3_____________      KC_Z,    KC_X,    KC_C,    KC_D,    KC_V
+
+#define _____________COLEMAK_MOD_DH_R1_____________      KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
+#define _____________COLEMAK_MOD_DH_R2_____________      KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT
+#define _____________COLEMAK_MOD_DH_R3_____________      KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
 
 #define __________________FUNC_L1__________________      KC_F12,  KC_F7,   KC_F8,   KC_F9,   XXXXXXX
 #define __________________FUNC_L2__________________      KC_F11,  KC_F4,   KC_F5,   KC_F6,   XXXXXXX
