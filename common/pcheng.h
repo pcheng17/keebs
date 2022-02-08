@@ -103,7 +103,7 @@ enum common_custom_keycodes {
 #define _________________LOWER_L3__________________      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
 #define _________________LOWER_R1__________________      KC_6,    KC_7,    KC_8,    KC_9,    KC_0
-#define _________________LOWER_R2__________________      XXXXXXX, KC_CLCL, KC_ARRW, KC_SLSL, XXXXXXX
+#define _________________LOWER_R2__________________      XXXXXXX, KC_ARRW, KC_CLCL, KC_SLSL, XXXXXXX
 #define _________________LOWER_R3__________________      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
 #define _________________RAISE_L1__________________      KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
