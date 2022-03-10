@@ -3,20 +3,18 @@
 #include QMK_KEYBOARD_H
 
 enum common_layers {
-    _QWERTY,
-    // _COLEMAK,
+    _QWERTY, // Windows home-row mods
+    _GAME,   // Vanilla QWERTY
     _LOWER,
     _RAISE,
     _NAVI,
     _NUMPAD,
     _FUNC,
-    _GAME,
     _ADJUST
 };
 
 enum common_custom_keycodes {
     KC_QWERTY = SAFE_RANGE,
-    // KC_COLEMAK,
     KC_SLSL,
     KC_CLCL,
     KC_ARRW,
@@ -25,7 +23,7 @@ enum common_custom_keycodes {
 };
 
 #define BASE     TO(_QWERTY)
-#define GAME     TG(_GAME)
+#define GAME     TO(_GAME)
 #define LOWER    MO(_LOWER)
 #define RAISE    MO(_RAISE)
 #define ADJUST   MO(_ADJUST)

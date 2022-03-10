@@ -12,11 +12,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
-        // case KC_COLEMAK:
-        //     if (record->event.pressed) {
-        //         set_single_persistent_default_layer(_COLEMAK);
-        //     }
-        //     return false;
         case KC_SLSL:
             if (record->event.pressed) {
                 SEND_STRING("//");
