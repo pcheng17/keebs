@@ -25,7 +25,7 @@ enum common_custom_keycodes {
 };
 
 #define BASE     TO(_QWERTY)
-#define GAME     TO(_GAME)
+#define GAME     TG(_GAME)
 #define LOWER    MO(_LOWER)
 #define RAISE    MO(_RAISE)
 #define ADJUST   MO(_ADJUST)
