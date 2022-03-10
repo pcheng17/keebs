@@ -15,7 +15,7 @@ jobs:
       with:
         submodules: recursive
     - name: Create symlinks
-      run: python ./setup.py
+      run: python3 ./setup.py
     - name: Build firmware
       run: make -C qmk_firmware crkbd:pcheng
     - name: Archive artifact
