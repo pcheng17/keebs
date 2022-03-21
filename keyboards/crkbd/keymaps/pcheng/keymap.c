@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         XXXXXXX, __________________NO_OP____________________,                      ________________NUMPAD_R3__________________,  KC_ENT,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            __________BLANK__________,    __________BLANK__________
+                                            __________BLANK__________,     KC_SPC,    KC_0,  KC_DOT
                                         //'--------------------------'  '--------------------------'
     ),
 
@@ -96,17 +96,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
                                         //'--------------------------'  '--------------------------'
     ),
 
-    // _GAME
-
     [_ADJUST] = LAYOUT_split_3x6_3(
     //.-----------------------------------------------------.                    .-----------------------------------------------------.
-          RESET, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, __________________NO_OP____________________,                      __________________NO_OP____________________, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        CTLALTD, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX,                      XXXXXXX, DM_REC1, DM_PLY1, XXXXXXX, DM_RSTP, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX,                      XXXXXXX,  NUMPAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_RALT
+                                            XXXXXXX, _______, XXXXXXX,    XXXXXXX, _______, XXXXXXX
                                         //'--------------------------'  '--------------------------'
     )
 };
