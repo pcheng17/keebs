@@ -4,7 +4,7 @@
 
 enum common_layers {
     _QWERTY, // Windows home-row mods
-    _GAME,   // Vanilla QWERTY
+    _GAMING, // Vanilla QWERTY
     _LOWER,
     _RAISE,
     _NAVI,
@@ -23,7 +23,7 @@ enum common_custom_keycodes {
 };
 
 #define BASE     TO(_QWERTY)
-#define GAME     TO(_GAME)
+#define GAMING   TO(_GAMING)
 #define LOWER    MO(_LOWER)
 #define RAISE    MO(_RAISE)
 #define ADJUST   MO(_ADJUST)
