@@ -52,13 +52,13 @@ enum common_custom_keycodes {
 #define W_HM_SC  RGUI_T(KC_SCLN)
 
 #define M_HM_A   LCTL_T(KC_A)
-#define M_HM_S   LALT_T(KC_S)
+#define M_HM_S   LOPT_T(KC_S)
 #define M_HM_D   LCMD_T(KC_D)
 #define M_HM_F   LSFT_T(KC_F)
 
-#define M_HM_J   LSFT_T(KC_J)
+#define M_HM_J   RSFT_T(KC_J)
 #define M_HM_K   LCMD_T(KC_K)
-#define M_HM_L   LALT_T(KC_L)
+#define M_HM_L   LOPT_T(KC_L)
 #define M_HM_SC  LCTL_T(KC_SCLN)
 
 // clang-format off
