@@ -17,9 +17,13 @@ jobs:
     - name: Create symlinks
       run: python3 ./setup.py
     - name: Build firmware
-      run: make -C qmk_firmware crkbd:pcheng
+      run: |
+       make -C qmk_firmware crkbd:pcheng
+       make -C qmk_firmware crkbd:pcheng_mac
     - name: Archive artifact
       uses: actions/upload-artifact@v2
       with:
         name: crkbd_rev1
-        path: ./qmk_firmware/crkbd_rev1_pcheng.hex
+        path: |
+         ./qmk_firmware/crkbd_rev1_pcheng.hex
+         ./qmk_firmware/crkbd_rev1_pcheng_mac.hex
