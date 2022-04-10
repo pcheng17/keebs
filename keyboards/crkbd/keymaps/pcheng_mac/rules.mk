@@ -1,3 +1,5 @@
+USER_NAME := pcheng
+
 OLED_ENABLE = no
 OLED_DRIVER = SSD1306
 
