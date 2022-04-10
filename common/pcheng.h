@@ -97,7 +97,7 @@ enum common_custom_keycodes {
 #define __________HOME_ROW_MOD_WINDOWS_R___________      XXXXXXX, KC_LCTL, KC_RSFT, KC_LALT, KC_RGUI
 
 #define ____________HOME_ROW_MOD_MAC_L_____________      KC_LCTL, KC_LALT, KC_LCMD, KC_LSFT, XXXXXXX
-#define ____________HOME_ROW_MOD_MAC_R_____________      XXXXXXX, KC_LSFT, KC_LCMD, KC_LALT, KC_LCLT
+#define ____________HOME_ROW_MOD_MAC_R_____________      XXXXXXX, KC_LSFT, KC_LCMD, KC_LALT, KC_LCTL
 
 #define _________________LOWER_L1__________________      KC_1,    KC_2,    KC_3,    KC_4,    KC_5
 #define _________________LOWER_L2__________________      KC_HAEN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
