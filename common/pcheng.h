@@ -51,6 +51,12 @@ enum common_custom_keycodes {
 #define W_HM_L   LALT_T(KC_L)
 #define W_HM_SC  RGUI_T(KC_SCLN)
 
+// OSX
+
+#define MSLEFT   C(KC_LEFT)
+#define MSRIGHT  C(KC_RIGHT)
+#define SSCLIP   C(LCMD(S(KC_4)))
+
 #define M_HM_A   LCTL_T(KC_A)
 #define M_HM_S   LOPT_T(KC_S)
 #define M_HM_D   LCMD_T(KC_D)
