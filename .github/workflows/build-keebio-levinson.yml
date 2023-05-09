@@ -18,12 +18,10 @@ jobs:
       run: python3 ./setup.py
     - name: Build firmware
       run: |
-       make -C qmk_firmware keebio/levinson/rev3:pcheng
        make -C qmk_firmware keebio/levinson/rev3:pcheng_mac
     - name: Archive artifact
       uses: actions/upload-artifact@v2
       with:
         name: keebio_levinson_rev3
         path: |
-         ./qmk_firmware/keebio_levinson_rev3_pcheng.hex
          ./qmk_firmware/keebio_levinson_rev3_pcheng_mac.hex
