@@ -1,3 +1,5 @@
+USER_NAME := pcheng
+
 # MCU name
 MCU = atmega32u4
 
