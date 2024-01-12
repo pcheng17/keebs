@@ -119,8 +119,8 @@ enum common_custom_keycodes {
 #define _________________RAISE_L3__________________      XXXXXXX, XXXXXXX, KC_LT,   KC_GT,   KC_GEQ
 
 #define _________________RAISE_R1__________________      KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_BSLS
-#define _________________RAISE_R2__________________      XXXXXXX, KC_LPRN, KC_RPRN, KC_LBRC, KC_RBRC
-#define _________________RAISE_R3__________________      XXXXXXX, KC_LCBR, KC_RCBR, KC_SLSH, KC_QUES
+#define _________________RAISE_R2__________________      KC_ARRW, KC_LPRN, KC_RPRN, KC_LBRC, KC_RBRC
+#define _________________RAISE_R3__________________      KC_CLCL, KC_LCBR, KC_RCBR, KC_SLSH, KC_QUES
 
 #define         __________BLANK__________                _______, _______, _______
 #define __________________BLANK____________________      _______, _______, _______, _______, _______
