@@ -4,9 +4,9 @@
 
 enum common_layers {
     _QWERTY, // Windows home-row mods
-    _GAMING, // Vanilla QWERTY
     _LOWER,
     _RAISE,
+    _GAMING, // Vanilla QWERTY
     _NAVI,
     _NUMPAD,
     _FUNC,

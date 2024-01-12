@@ -88,6 +88,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
             // key is tapped because chances are, I'm not trying to press "Enter"
             // in the middle of a bunch of keystrokes.
         case LCTL_T(KC_SPC):
+            // DEPRECATED?
             // My thought is that if I end up holding the space key down long enough for another key
             // to be pressed and released, then I probably didn't intend for it to be a space in the
             // first place. Thus, I want this key to prefer the hold action.
