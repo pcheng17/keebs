@@ -33,7 +33,6 @@ enum common_custom_keycodes {
 
 #define LWR_DEL  LT(_LOWER, KC_DEL)
 #define NAV_SPC  LT(_NAVI, KC_SPC)
-#define LCTLSPC  LT(KC_LCTL, KC_SPC)
 #define FNC_LFT  LT(_FUNC, KC_LEFT)
 
 #define WINSNIP  S(G(KC_S))
@@ -41,6 +40,7 @@ enum common_custom_keycodes {
 #define WSRIGHT  C(G(KC_RIGHT))
 #define CTLALTD  C(A(KC_DEL))
 #define CTLESC   LCTL_T(KC_ESC)
+#define LCTLSPC  LCTL_T(KC_SPC)
 
 #define W_HM_A   LGUI_T(KC_A)
 #define W_HM_S   LALT_T(KC_S)
