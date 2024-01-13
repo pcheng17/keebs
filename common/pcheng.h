@@ -57,8 +57,8 @@ enum common_custom_keycodes {
 #define MSLEFT   C(KC_LEFT)
 #define MSRIGHT  C(KC_RIGHT)
 #define CLIP_CP  C(LCMD(S(KC_4)))
-#define CLIP_SV  LCMD(S(KC_4)))
-#define MOV_REC  LCMD(S(KC_5))
+#define CLIP_SV  LCMD(S(KC_4))
+#define MOV_REC  LCMD(S(KC_5)
 
 #define M_HM_A   LCTL_T(KC_A)
 #define M_HM_S   LOPT_T(KC_S)
