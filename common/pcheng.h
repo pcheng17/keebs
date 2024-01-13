@@ -106,6 +106,9 @@ enum common_custom_keycodes {
 #define ____________HOME_ROW_MOD_MAC_L_____________      KC_LCTL, KC_LALT, KC_LCMD, KC_LSFT, XXXXXXX
 #define ____________HOME_ROW_MOD_MAC_R_____________      XXXXXXX, KC_LSFT, KC_LCMD, KC_LALT, KC_LCTL
 
+#define __________________NUM_L____________________      KC_1,    KC_2,    KC_3,    KC_4,    KC_5
+#define __________________NUM_R____________________      KC_6,    KC_7,    KC_8,    KC_9,    KC_0
+
 #define _________________LOWER_L1__________________      KC_1,    KC_2,    KC_3,    KC_4,    KC_5
 #define _________________LOWER_L2__________________      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define _________________LOWER_L3__________________      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
