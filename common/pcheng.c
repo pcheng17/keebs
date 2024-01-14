@@ -12,6 +12,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
+        case KC_TMUX:
+            if (record->event.pressed) {
+                register_mods(MOD_BIT(KC_LCTL));
+                register_code(KC_A);
+            } else {
+                unregister_code(KC_A);
+                unregister_mods(MOD_BIT(KC_LCTL));
+            }
+            return false;
         case KC_SLSL:
             if (record->event.pressed) {
                 SEND_STRING("//");

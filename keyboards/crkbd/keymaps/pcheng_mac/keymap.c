@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "pcheng.h"
 #include <stdio.h>
 
-#define TMUX     C(KC_A)
-#define FN_TMUX  LT(_FUNC, TMUX)
+// #define TMUX     C(KC_A)
+#define FN_TMUX  LT(_FUNC, KC_TMUX)
 
 #define LAYOUT_wrapper(...)    LAYOUT_split_3x6_3(__VA_ARGS__)
 
@@ -100,11 +100,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
     [_FUNC] = LAYOUT_wrapper(
     //.-----------------------------------------------------.                    .-----------------------------------------------------.
-        XXXXXXX, __________________FUNC_L1__________________,                      KC_VOLU, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX,
+        XXXXXXX, __________________FUNC_L1__________________,                      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        XXXXXXX, __________________FUNC_L2__________________,                      KC_VOLD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, __________________FUNC_L2__________________,                      XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        XXXXXXX, __________________FUNC_L3__________________,                      KC_MUTE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, __________________FUNC_L3__________________,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             __________BLANK__________,    __________BLANK__________
                                         //'--------------------------'  '--------------------------'
