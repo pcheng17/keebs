@@ -15,7 +15,6 @@ enum common_layers {
 
 enum common_custom_keycodes {
     KC_QWERTY = SAFE_RANGE,
-    KC_TMUX,
     KC_SLSL,
     KC_CLCL,
     KC_ARRW,

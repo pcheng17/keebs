@@ -19,8 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "pcheng.h"
 #include <stdio.h>
 
-// #define TMUX     C(KC_A)
-#define FN_TMUX  LT(_FUNC, KC_TMUX)
+#define TMUX     C(KC_A)
 
 #define LAYOUT_wrapper(...)    LAYOUT_split_3x6_3(__VA_ARGS__)
 
@@ -34,8 +33,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
         KC_LSFT, _________________QWERTY_L3_________________,                      _________________QWERTY_R3_________________,  KC_ENT,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            KC_LCMD, LWR_DEL, NAV_SPC,     KC_SPC,   RAISE, FN_TMUX
+                                            KC_LCMD, LWR_DEL, NAV_SPC,     KC_SPC,   RAISE,    FUNC
                                         //'--------------------------'  '--------------------------'
+
     ),
 
     [_LOWER] = LAYOUT_wrapper(
