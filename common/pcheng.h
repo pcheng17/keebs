@@ -35,7 +35,7 @@ enum common_custom_keycodes {
 #define NAV_SPC  LT(_NAVI, KC_SPC)
 #define FNC_LFT  LT(_FUNC, KC_LEFT)
 
-#define TMUX     C(KC_A)
+#define TMUX     C(KC_B)
 #define WINSNIP  S(G(KC_S))
 #define WSLEFT   C(G(KC_LEFT))
 #define WSRIGHT  C(G(KC_RIGHT))
