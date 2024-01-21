@@ -92,18 +92,6 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
             // My thought is that if I end up holding the space key down long enough for another key
             // to be pressed and released, then I probably didn't intend for it to be a space in the
             // first place. Thus, I want this key to prefer the hold action.
-        case LCTL_T(KC_A):
-        case LOPT_T(KC_S):
-        case LCMD_T(KC_D):
-        case LSFT_T(KC_F):
-        case RSFT_T(KC_J):
-        case LCMD_T(KC_K):
-        case LOPT_T(KC_L):
-        case LCTL_T(KC_SCLN):
-            // These are my homerow mods. I think I want them to prefer the hold action in this
-            // situation. If I get any false positives here, this likely means I'm being sloppy when
-            // I'm typing fast since theoretically, while I'm typing, I shouldn't be holding keys
-            // long enough for another key to be tapped. We'll see...
             return true;
         default:
             return false;
