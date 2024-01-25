@@ -48,7 +48,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             // down, thinking I'm going to need something in my Raise layer, but then realize I
             // don't, and when I release it, it sometimes ends up being a tap. Thus, I want to
             // shorten the tapping term as much as I can.
-            return 110;
+            return 120;
         default:
             return TAPPING_TERM;
     }
