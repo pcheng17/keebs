@@ -41,6 +41,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case RSE_ENT:
+            // I need this to be as short as possible because I sometimes accidentally hold this key
+            // down, thinking I'm going to need something in my Raise layer, but then realize I
+            // don't, and when I release it, it sometimes ends up being a tap. Thus, I want to
+            // shorten the tapping term as much as I can.
+            return 110;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
 // If you press a dual-role key, press another key, and then release the dual-role key,
 // all within the tapping term, the dual-role key will perform its tap action. If the
 // `HOLD_ON_OTHER_KEY_PRESS` option is enabled, the dual-role key will also perform its
