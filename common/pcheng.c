@@ -44,11 +44,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RSE_ENT:
-            // I need this to be as short as possible because I sometimes accidentally hold this key
-            // down, thinking I'm going to need something in my Raise layer, but then realize I
+        case LWR_DEL:
+            // I need this to be as short as possible because I sometimes accidentally hold these
+            // keys down, thinking I'm going to need something in the layer, but then realize I
             // don't, and when I release it, it sometimes ends up being a tap. Thus, I want to
             // shorten the tapping term as much as I can.
-            return 120;
+            return 110;
         default:
             return TAPPING_TERM;
     }
