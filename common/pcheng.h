@@ -34,6 +34,7 @@ enum common_custom_keycodes {
 #define LWR_DEL  LT(_LOWER, KC_DEL)
 #define RSE_ENT  LT(_RAISE, KC_ENT)
 #define NAV_SPC  LT(_NAVI, KC_SPC)
+#define HYP_SPC  MT(MOD_HYPR, KC_SPC)
 #define FNC_LFT  LT(_FUNC, KC_LEFT)
 
 #define TMUX     C(KC_SPC)
